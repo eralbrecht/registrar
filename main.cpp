@@ -22,6 +22,7 @@ int main(int argc, char** argv)
 		if (lineCount == 0)
 		{
 			int windowCount = currString(int);
+			//call the window thing to create the windows, maybe have a while statment embeded in here that will make the correct number of objects?
 			lineCount += 1;
 		}
 		if (lineCount == 1)
@@ -44,4 +45,5 @@ int main(int argc, char** argv)
 			currStudentCount -= 1;
 		}
 	}
+	//call simulation function
 }
