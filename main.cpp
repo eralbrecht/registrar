@@ -1,13 +1,18 @@
+#include <iostream>
+
 using namespace std;
 int main(int argc, char** argv)
 {
+
+	string analysisString;
+
 	//loads in file
-	while (analysisString.length == 0)
+	while (analysisString.length() == 0)
 	{
 		if (argc > 1)
 		{
 			string inputFile = argv[1];
-			cout << "file name is: " << inpputFile << endl;
+			cout << "file name is: " << inputFile << endl;
 			analysisString = inputFile
 		}
 		else
@@ -15,7 +20,8 @@ int main(int argc, char** argv)
 			cout << "you must give a file name as your command line argument when calling this function" << endl;
 		}
 	}
-	lineCount = 0;
+	int lineCount = 0;
+	string currString;
 	//we will iterate through the file, in waves of information, to create windows, and students
 	while (getLine(analysisString, currString)
 	{
