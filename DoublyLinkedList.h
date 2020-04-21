@@ -29,19 +29,22 @@ class DoublyLinkedList
 
     //Helper Functons
 
-    unsigned int getSize(){
+    unsigned int getSize()
+    {
 
       return size;
     }
 
-    bool isEmpty(){
+    bool isEmpty()
+    {
 
       return (size == 0);
     }
 
-    void printList(){
+    void printList()
+    {
 
-      ListNode *current = front;
+      ListNode<Node> *current = front;
 
       while (curr != NULL){
 
@@ -52,7 +55,8 @@ class DoublyLinkedList
 
     //Main Functions
 
-    void insertFront(List data){
+    void insertFront(List data)
+    {
 
       ListNode<Node> *node = new ListNode(data);
 
@@ -67,7 +71,8 @@ class DoublyLinkedList
 
     }
 
-    void insertBack(List data){
+    void insertBack(List data)
+    {
 
       ListNode<Node> *node = new ListNode(data);
 
@@ -81,9 +86,10 @@ class DoublyLinkedList
       size++;
     }
 
-    List removeFront(){
+    List removeFront()
+    {
 
-      ListNode *tempNode = front;
+      ListNode<Node> *tempNode = front;
 
       //Check if list is empty before removing
 
@@ -104,9 +110,10 @@ class DoublyLinkedList
 
     }
 
-    List removeBack(){
+    List removeBack()
+    {
 
-      ListNode *tempNode = back;
+      ListNode<Node> *tempNode = back;
 
       //Check if list is empty before removing
 
@@ -126,8 +133,9 @@ class DoublyLinkedList
       return temp;
     }
 
-    List remove(List data){
-      ListNode *curr = front;
+    List remove(List data)
+    {
+      ListNode<Node> *curr = front;
 
       //Look for the node with the data
       while(curr->data != data)
@@ -166,8 +174,66 @@ class DoublyLinkedList
       return temp;
     }
 
+    List removeAtPosition(int position)
+    {
+      ListNode<Node> *curr = front;
 
-    
+      for(int i = 0; i < position; i++) //Iterate from the front until we reach the indicated index
+      {
+        curr = curr->next;
+      }
 
+      if(curr = NULL)
+      {
+        cout << "This position does not exist in the list." << endl;
+        return -1;
+      }
 
+      //If we hit this point, the position has been found
+      if(curr == front)//If the position is the first position
+      {
+        front = curr->next;
+      }else
+      {
+        curr->prev->next = curr->next;
+      }
+
+      if(curr == back)//If the position is the last position
+      {
+        back = curr->prev;
+      }else
+      {
+        curr->next->prev = curr->prev;
+      }
+
+      curr->next = NULL;
+      curr->prev = NULL;
+      List temp = curr->data;
+      size--;
+      delete curr;
+      return temp;
+
+    }
+
+    List search(List data)
+    {
+      ListNode<List> *curr = front;
+      int count = 0;
+
+      //Look for the node with the data
+      while(curr->data != data)
+      {
+        curr = curr->next;
+        count++;
+
+        if(curr == NULL)
+        {
+          cout << "No matching data found." << endl;
+          return -1;
+        }
+      }
+
+      //Once we exit the while loop, we found the position
+      return count;
+    }
 };
