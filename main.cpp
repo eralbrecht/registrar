@@ -61,5 +61,11 @@ int main(int argc, char** argv)
 			currStudentCount -= 1;
 		}
 	}
+	while (windowCount !=0)
+	{
+		Window *myWindow = new Window();
+		windowCount -+1;
+		//push to a list of windows but idk how
+	}
 	//call simulation function
 }
