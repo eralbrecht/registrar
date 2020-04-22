@@ -19,13 +19,14 @@ int main(int argc, char** argv)
 	//loads in file
 
 	//This whole chunk is to make sure the user provided a file, and checks if the file exists
+
+	ifstream inFile;
 	if (argc > 1)
 	{
 		string inputFile = argv[1];
 		cout << "File name is: " << inputFile << endl;
 		simulationFile = inputFile;
 
-		ifstream inFile;
 		inFile.open(simulationFile);
 
 		if(!inFile)
@@ -45,12 +46,12 @@ int main(int argc, char** argv)
 	int lineCount = 0;
 	string currString;
 	//we will iterate through the file, in waves of information, to create windows, and students
-	while (!inFile.eof())
+	while (getline(inFile, currString))
 	{
-		getline(inFile, currString);
+		//getline(inFile, currString);
 		if (lineCount == 0)
 		{
-			int windowCount = currString(int);
+			int windowCount = stoi(currString);
 			//call the window thing to create the windows, maybe have a while statment embeded in here that will make the correct number of objects?
 			lineCount += 1;
 			while (windowCount !=0)
@@ -64,17 +65,17 @@ int main(int argc, char** argv)
 		{
 			//first line in wave will tell us what time they show up
 			lineCount += 1;
-			int currClock = currString(int);
+			int currClock = stoi(currString);
 		}
 		if (lineCount == 2)
 		{
 			//this will tell us how big the student wave is
 			lineCount += 1;
-			int currStudentCount = currString(int);
+			int currStudentCount = stoi(currString);
 		}
 		if (lineCount ==3)
 		{
-			int helpClock = currString(int);
+			int helpClock = stoi(currString);
 			//this will tell us how long the student will need help for and add them to the list
 			Student *myStudent = new Student(currClock, helpClock);
 
