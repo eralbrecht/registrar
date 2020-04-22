@@ -46,12 +46,17 @@ int main(int argc, char** argv)
 	int lineCount = 0;
 	string currString;
 	//we will iterate through the file, in waves of information, to create windows, and students
+	//initialize nexted variables
+	int currClock = 0;
+	int currStudentCount =0;
+	int helpClock = 0;
+	int windowCount = 0;
 	while (getline(inFile, currString))
 	{
 		//getline(inFile, currString);
 		if (lineCount == 0)
 		{
-			int windowCount = stoi(currString);
+			windowCount = stoi(currString);
 			//call the window thing to create the windows, maybe have a while statment embeded in here that will make the correct number of objects?
 			lineCount += 1;
 			while (windowCount !=0)
@@ -65,17 +70,17 @@ int main(int argc, char** argv)
 		{
 			//first line in wave will tell us what time they show up
 			lineCount += 1;
-			int currClock = stoi(currString);
+			currClock = stoi(currString);
 		}
 		if (lineCount == 2)
 		{
 			//this will tell us how big the student wave is
 			lineCount += 1;
-			int currStudentCount = stoi(currString);
+			currStudentCount = stoi(currString);
 		}
 		if (lineCount ==3)
 		{
-			int helpClock = stoi(currString);
+			helpClock = stoi(currString);
 			//this will tell us how long the student will need help for and add them to the list
 			Student *myStudent = new Student(currClock, helpClock);
 
