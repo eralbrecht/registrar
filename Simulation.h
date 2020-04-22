@@ -15,8 +15,6 @@ class Simulation
     ~Simulation(); //Destructor
 
 
-
-
 };
 
 #endif
