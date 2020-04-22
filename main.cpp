@@ -1,3 +1,6 @@
+//Registrar Simulation
+//Rose Albrecht ealbrecht@chapman.edu #2300456 (section 1)
+//Jordan Farmer jfarmer@chapman.edu #2289033 (section 2)
 #include <iostream>
 #include <fstream>
 #include "Queue.h"
@@ -49,6 +52,12 @@ int main(int argc, char** argv)
 			int windowCount = currString(int);
 			//call the window thing to create the windows, maybe have a while statment embeded in here that will make the correct number of objects?
 			lineCount += 1;
+			while (windowCount !=0)
+			{
+				Window *myWindow = new Window();
+				windowCount -=1;
+				//push to a list of windows but idk how
+			}
 		}
 		if (lineCount == 1)
 		{
@@ -78,11 +87,6 @@ int main(int argc, char** argv)
 			currStudentCount -= 1;
 		}
 	}
-	while (windowCount !=0)
-	{
-		Window *myWindow = new Window();
-		windowCount -+1;
-		//push to a list of windows but idk how
-	}
+	
 	//call simulation function
 }
