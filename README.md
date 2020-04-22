@@ -4,3 +4,5 @@ Jordan Farmer jfarmer@chapman.edu #2289033 (section 2)
 References
 	Lecture
 	https://www.techiedelight.com/convert-string-to-int-cpp/ used to convert strings to int
+Notes:
+	we interpret window time idle as the total time over a simulation it sat unused
