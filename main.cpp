@@ -6,6 +6,8 @@ int main(int argc, char** argv)
 
 	string analysisString;
 	int totalStudentCount = 0;
+	Student newStudent;
+
 	//loads in file
 	while (analysisString.length() == 0)
 	{
@@ -13,7 +15,7 @@ int main(int argc, char** argv)
 		{
 			string inputFile = argv[1];
 			cout << "file name is: " << inputFile << endl;
-			analysisString = inputFile
+			analysisString = inputFile;
 		}
 		else
 		{
@@ -23,7 +25,7 @@ int main(int argc, char** argv)
 	int lineCount = 0;
 	string currString;
 	//we will iterate through the file, in waves of information, to create windows, and students
-	while (getLine(analysisString, currString)
+	while (getLine(analysisString, currString))
 	{
 		if (lineCount == 0)
 		{
@@ -47,8 +49,8 @@ int main(int argc, char** argv)
 		{
 			int helpClock = currString(int);
 			//this will tell us how long the student will need help for and add them to the list
-			new Student::Student(currClock, helpClock)
-			
+			Student *myStudent = new Student(currClock, helpClock);
+
 			//maybe we use totalStudentCount
 			totalStudentCount += 1;
 			//how to push student to the queue
