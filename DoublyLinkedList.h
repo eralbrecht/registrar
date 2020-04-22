@@ -47,12 +47,12 @@ class DoublyLinkedList
     void printList()
     {
 
-      ListNode<T> *current = front;
+      ListNode<T> *curr = front;
 
       while (curr != NULL){
 
         cout << curr->data << endl;
-        current = current->next;
+        curr = curr->next;
       }
     }
 
@@ -61,7 +61,7 @@ class DoublyLinkedList
     void insertFront(T data)
     {
 
-      ListNode<T> *node = new ListNode(data);
+      ListNode<T> *node = new ListNode<T>(data);
 
       //Check if list is empty before inserting, then move on to the conditions
 
@@ -77,7 +77,7 @@ class DoublyLinkedList
     void insertBack(T data)
     {
 
-      ListNode<T> *node = new ListNode(data);
+      ListNode<T> *node = new ListNode<T>(data);
 
       //CHeck if list is empty before inserting, then move on to the conditions
 
@@ -131,7 +131,7 @@ class DoublyLinkedList
       back = back->prev;
       tempNode->prev = NULL;
       T temp = tempNode->data;
-      size--
+      size--;
       delete tempNode;
       return temp;
     }

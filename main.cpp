@@ -25,10 +25,10 @@ int main(int argc, char** argv)
 		cout << "File name is: " << inputFile << endl;
 		simulationFile = inputFile;
 
-		ifstream inputFile;
-		inputFile.open(simulationFile);
+		ifstream inFile;
+		inFile.open(simulationFile);
 
-		if(!inputFile)
+		if(!inFile)
 		{
 			cout << "This file does not exist in the directory. Pleas try again." << endl;
 			exit(1);
@@ -45,8 +45,9 @@ int main(int argc, char** argv)
 	int lineCount = 0;
 	string currString;
 	//we will iterate through the file, in waves of information, to create windows, and students
-	while (getLine(analysisString, currString))
+	while (!simulationFile.eof())
 	{
+		getline(simulationFile, currString)
 		if (lineCount == 0)
 		{
 			int windowCount = currString(int);
@@ -87,6 +88,6 @@ int main(int argc, char** argv)
 			currStudentCount -= 1;
 		}
 	}
-	
+
 	//call simulation function
 }

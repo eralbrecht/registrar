@@ -2,7 +2,7 @@
 //Rose Albrecht ealbrecht@chapman.edu #2300456 (section 1)
 //Jordan Farmer jfarmer@chapman.edu #2289033 (section 2)
 #include "window.h"
-int Window::Window()
+Window::Window()
 {
 	timeOccupied  = 0;
 	timeUnoccupied = 0;

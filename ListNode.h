@@ -26,7 +26,7 @@ class ListNode
     ListNode(T d)
     {
       data = d;
-      prev = NULL:
+      prev = NULL;
       next = NULL;
     }
 
