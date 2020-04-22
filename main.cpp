@@ -63,7 +63,7 @@ int main(int argc, char** argv)
 			{
 				Window *myWindow = new Window();
 				windowCount -=1;
-				//push to a list of windows but idk how
+				//push to an array of windows the size that is the number of windows we have
 			}
 		}
 		if (lineCount == 1)
