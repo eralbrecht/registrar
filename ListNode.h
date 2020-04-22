@@ -1,6 +1,9 @@
 //Registrar Simulation
 //Rose Albrecht ealbrecht@chapman.edu #2300456 (section 1)
 //Jordan Farmer jfarmer@chapman.edu #2289033 (section 2)
+#ifndef LISTNODE
+#define LISTNODE
+
 #include <iostream>
 
 using namespace std;
@@ -26,7 +29,7 @@ class ListNode
     ListNode(T d)
     {
       data = d;
-      prev = NULL:
+      prev = NULL;
       next = NULL;
     }
 
@@ -34,3 +37,5 @@ class ListNode
 
     }
 };
+
+#endif
