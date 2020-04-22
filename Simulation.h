@@ -4,7 +4,6 @@
 #ifndef SIMULATION
 #define SIMULATION
 #include <iostream>
-
 using namespace std;
 
 class Simulation

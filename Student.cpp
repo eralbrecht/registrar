@@ -22,4 +22,11 @@ int Student::getArrival()
 {
 	return arrival;
 }
-//make a variable that is the length of time they waited for help
+void setTimeWaited(int deltaTime)
+{
+	timeWaited = deltaTime;
+}
+int getTimeWaited()
+{
+	return timeWaited;
+}
