@@ -22,3 +22,4 @@ int Student::getArrival()
 {
 	return arrival;
 }
+//make a variable that is the length of time they waited for help
