@@ -23,7 +23,7 @@ class Queue
 
     //Functions
 
-    void insert(T data) //Queue is a FIFO data structure, insert at back
+    void insert(T data) //Queue is a first in first out data structue, we want to add objects to the back
     {
       myQueue.insertBack(data);
     }
