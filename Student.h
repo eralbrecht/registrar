@@ -12,5 +12,4 @@ class Student
 
 		int arrival;
 		int help;
-		
 };
