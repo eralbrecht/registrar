@@ -1,13 +1,16 @@
+#include <iostream>
+
 using namespace std;
-class student()
+
+class Student
 {
-public:
-	Student(int arrivalTime, int helpTime);
-	//constructor
-	~Student();
-	int getArrival();
-	int getHelp();
-private:
-	int arrive;
-	int help;
-}
+	public:
+		Student(int arrivalTime, int helpTime); //Constructor
+		~Student(); //Destructor
+		int getArrival();
+		int getHelp();
+
+		int arrival;
+		int help;
+		
+};

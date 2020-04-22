@@ -1,14 +1,21 @@
+#include <iostream>
+#include "student.h"
+
+using namespace std;
+
 //constructor
-void Student::StudentBuilder(int arrivalTime, int helpTime)
+Student::Student(int arrivalTime, int helpTime)
 {
-	int arrive = arrivalTime;
-	int help = helpTime;
-	int getHelp()
-	{
-		return help;
-	}
-	int arrival()
-	{
-		return arrive;
-	}
+	arrival = arrivalTime;
+	help = helpTime;
+}
+
+int Student::getHelp()
+{
+	return help;
+}
+
+int Student::getArrival()
+{
+	return arrival;
 }
