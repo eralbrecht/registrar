@@ -1,13 +1,14 @@
 #include <iostream>
-
+#include "Queue.h"
+#include "Student.h"
+#include "Window.h"
 using namespace std;
 int main(int argc, char** argv)
 {
 
 	string analysisString;
 	int totalStudentCount = 0;
-	Student newStudent;
-
+	//Student newStudent; i think we make instances of this later and dont need it up here
 	//loads in file
 	while (analysisString.length() == 0)
 	{
@@ -19,7 +20,7 @@ int main(int argc, char** argv)
 		}
 		else
 		{
-			cout << "you must give a file name as your command line argument when calling this function" << endl;
+			cout << "you must give a file name as your command line argument when calling this function, try again" << endl;
 		}
 	}
 	int lineCount = 0;
