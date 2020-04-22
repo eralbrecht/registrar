@@ -5,21 +5,21 @@
 
 using namespace std;
 
-template <class List>
+template <class T>
 class DoublyLinkedList
 {
 
   public:
 
-    ListNode<Node> *front; //pointer to the front of the linked list
-    ListNode<Node> *back; //pointer to the back of the linked list
+    ListNode<T> *front; //pointer to the front of the linked list
+    ListNode<T> *back; //pointer to the back of the linked list
     unsigned int size; //size of the list, can't be negative so it is unsigned
 
     DoublyLinkedList() //Default constructor
     {
       size = 0; //new list so it is empty
-      front = new ListNode<Node>(); //list is empty at this point, so the new node is the front and back
-      back = new ListNode<Node>(); //list is empty at this point, so the new node is the front and back
+      front = new ListNode<T>(); //list is empty at this point, so the new node is the front and back
+      back = new ListNode<T>(); //list is empty at this point, so the new node is the front and back
     }
 
     ~DoublyLinkedList()//Destructor
@@ -44,7 +44,7 @@ class DoublyLinkedList
     void printList()
     {
 
-      ListNode<Node> *current = front;
+      ListNode<T> *current = front;
 
       while (curr != NULL){
 
@@ -55,14 +55,14 @@ class DoublyLinkedList
 
     //Main Functions
 
-    void insertFront(List data)
+    void insertFront(T data)
     {
 
-      ListNode<Node> *node = new ListNode(data);
+      ListNode<T> *node = new ListNode(data);
 
       //Check if list is empty before inserting, then move on to the conditions
 
-      ListNode<Node> *temp = front;
+      ListNode<T> *temp = front;
       front = node;
       node->next = temp;
       temp->prev = node;
@@ -71,14 +71,14 @@ class DoublyLinkedList
 
     }
 
-    void insertBack(List data)
+    void insertBack(T data)
     {
 
-      ListNode<Node> *node = new ListNode(data);
+      ListNode<T> *node = new ListNode(data);
 
       //CHeck if list is empty before inserting, then move on to the conditions
 
-      ListNode<Node> *temp = back;
+      ListNode<T> *temp = back;
       back = node;
       node->prev = temp;
       temp->next = node;
@@ -86,10 +86,10 @@ class DoublyLinkedList
       size++;
     }
 
-    List removeFront()
+    T removeFront()
     {
 
-      ListNode<Node> *tempNode = front;
+      ListNode<T> *tempNode = front;
 
       //Check if list is empty before removing
 
@@ -103,17 +103,17 @@ class DoublyLinkedList
 
       front = front->next;
       tempNode->next = NULL;
-      List temp = tempNode->data;
+      T temp = tempNode->data;
       size--;
       delete tempNode;
       return temp;
 
     }
 
-    List removeBack()
+    T removeBack()
     {
 
-      ListNode<Node> *tempNode = back;
+      ListNode<T> *tempNode = back;
 
       //Check if list is empty before removing
 
@@ -127,15 +127,15 @@ class DoublyLinkedList
 
       back = back->prev;
       tempNode->prev = NULL;
-      List temp = tempNode->data;
+      T temp = tempNode->data;
       size--
       delete tempNode;
       return temp;
     }
 
-    List remove(List data)
+    T remove(T data)
     {
-      ListNode<Node> *curr = front;
+      ListNode<T> *curr = front;
 
       //Look for the node with the data
       while(curr->data != data)
@@ -168,15 +168,15 @@ class DoublyLinkedList
 
       curr->next = NULL;
       curr->prev = NULL;
-      List temp = curr->data;
+      T temp = curr->data;
       size--;
       delete curr;
       return temp;
     }
 
-    List removeAtPosition(int position)
+    T removeAtPosition(int position)
     {
-      ListNode<Node> *curr = front;
+      ListNode<T> *curr = front;
 
       for(int i = 0; i < position; i++) //Iterate from the front until we reach the indicated index
       {
@@ -208,16 +208,16 @@ class DoublyLinkedList
 
       curr->next = NULL;
       curr->prev = NULL;
-      List temp = curr->data;
+      T temp = curr->data;
       size--;
       delete curr;
       return temp;
 
     }
 
-    List search(List data)
+    T search(T data)
     {
-      ListNode<List> *curr = front;
+      ListNode<T> *curr = front;
       int count = 0;
 
       //Look for the node with the data

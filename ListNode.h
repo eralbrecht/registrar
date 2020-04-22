@@ -2,13 +2,13 @@
 
 using namespace std;
 
-template <class Node>
+template <class T>
 class ListNode
 {
 
   public:
 
-    List data; //data of the node
+    T data; //data of the node
     ListNode *prev; //pointer to previous node
     ListNode *next; //pointer to next node
 
@@ -20,7 +20,7 @@ class ListNode
 
     }
 
-    ListNode(List d)
+    ListNode(T d)
     {
       data = d;
       prev = NULL:
