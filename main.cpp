@@ -45,9 +45,9 @@ int main(int argc, char** argv)
 	int lineCount = 0;
 	string currString;
 	//we will iterate through the file, in waves of information, to create windows, and students
-	while (!simulationFile.eof())
+	while (!inFile.eof())
 	{
-		getline(simulationFile, currString)
+		getline(inFile, currString);
 		if (lineCount == 0)
 		{
 			int windowCount = currString(int);
