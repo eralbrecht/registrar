@@ -5,7 +5,7 @@ int main(int argc, char** argv)
 {
 
 	string analysisString;
-
+	int totalStudentCount = 0;
 	//loads in file
 	while (analysisString.length() == 0)
 	{
@@ -33,17 +33,25 @@ int main(int argc, char** argv)
 		}
 		if (lineCount == 1)
 		{
+			//first line in wave will tell us what time they show up
 			lineCount += 1;
 			int currClock = currString(int);
 		}
 		if (lineCount == 2)
 		{
+			//this will tell us how big the student wave is
 			lineCount += 1;
 			int currStudentCount = currString(int);
 		}
 		if (lineCount ==3)
 		{
-			//call student object function and use the clock value, and time needed for service in window
+			int helpClock = currString(int);
+			//this will tell us how long the student will need help for and add them to the list
+			new Student::Student(currClock, helpClock)
+			
+			//maybe we use totalStudentCount
+			totalStudentCount += 1;
+			//how to push student to the queue
 			if (currStudentCount == 1)//this was the last student in the wave and its over and we will start a new wave
 			{
 				lineCount = 1;
