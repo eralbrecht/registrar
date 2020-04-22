@@ -10,4 +10,6 @@
 
 //pop students from queue but ONLY if there is an open window and the clock is at their time
 
+//when we pop a student also give them the attribute of difference between current time and time arrived
+
 //when the student is done we will push them to an array the size of total student count, and increment the number of students that are done
