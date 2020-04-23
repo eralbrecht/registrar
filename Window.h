@@ -16,9 +16,11 @@ class Window
 	void WindowTick(bool isOccupied);
 	int GetOccupied();
 	int GetUnoccupied();
+	int GetRemaining();
 	private:
 	int timeOccupied;
 	int timeUnoccupied;
+	int timeRemaining;
 };
 
 #endif

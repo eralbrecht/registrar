@@ -4,7 +4,9 @@
 #ifndef SIMULATION
 #define SIMULATION
 #include <iostream>
-
+#include "Queue.h"
+#include "Student.h"
+#include "Window.h"
 using namespace std;
 
 class Simulation

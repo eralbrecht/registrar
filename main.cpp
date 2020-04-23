@@ -59,12 +59,18 @@ int main(int argc, char** argv)
 			windowCount = stoi(currString);
 			//call the window thing to create the windows, maybe have a while statment embeded in here that will make the correct number of objects?
 			lineCount += 1;
+			windowArray[windowCount];
 			while (windowCount !=0)
 			{
 				Window *myWindow = new Window();
 				windowCount -=1;
+<<<<<<< HEAD
 				//push to a list of windows but idk how
 				//make an array of windows and the size of the array is the number of windows
+=======
+				windowArray[windowCount-1] = *myWindow;
+				//push to an array of windows the size that is the number of windows we have
+>>>>>>> caebf6feab64f578068ead66eb3d6b9a50a3b30c
 			}
 		}
 		if (lineCount == 1)

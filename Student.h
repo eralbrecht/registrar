@@ -15,9 +15,12 @@ class Student
 		~Student(); //Destructor
 		int getArrival();
 		int getHelp();
-
+		int setTimeWaited();
+		int getTimeWaited();
+	private:
 		int arrival;
 		int help;
+		int timeWaited;
 };
 
 #endif
