@@ -21,10 +21,6 @@ class ListNode
 
     //Implementations
 
-    ListNode() //i don't think this will ever really be called because you need to assign some data to the node
-    {
-
-    }
 
     ListNode(T d)
     {

@@ -60,7 +60,7 @@ void Simulation::OpenFile(string inputFile)
 			helpClock = stoi(currString);
 			//this will tell us how long the student will need help for and add them to the queue
 			//Student *myStudent = new Student(currClock, helpClock);
-      currStudent = new Student(currClock, helpClock);
+      Student *currStudent = new Student(currClock, helpClock);
       studentQueue->insert(currStudent);
 
 
