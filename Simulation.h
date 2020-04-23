@@ -15,7 +15,15 @@ class Simulation
 
     Simulation(); //Constructor
     ~Simulation(); //Destructor
-
+  private:
+	int lineCount;
+	string currString;
+	//we will iterate through the file, in waves of information, to create windows, and students
+	//initialize nexted variables
+	int currClock;
+	int currStudentCount;
+	int helpClock;
+	int windowCount;
 
 };
 

@@ -3,6 +3,58 @@
 //Jordan Farmer jfarmer@chapman.edu #2289033 (section 2)
 #include <iostream>
 #include "Simulation.h"
+
+//need constructor
+
+Simulation::Simulation(ifStream inFile)
+{
+	lineCount = 0;
+	string currString;
+	//we will iterate through the file, in waves of information, to create windows, and students
+	//initialize nexted variables
+	currClock = 0;
+	currStudentCount =0;
+	helpClock = 0;
+	windowCount = 0;
+	while (getline(inFile, currString))
+	{
+		//getline(inFile, currString);
+		if (lineCount == 0)
+		{
+			windowCount = stoi(currString);
+			//call the window thing to create the windows, maybe have a while statment embeded in here that will make the correct number of objects?
+			lineCount += 1;
+		}
+		if (lineCount == 1)
+		{
+			//first line in wave will tell us what time they show up
+			lineCount += 1;
+			currClock = stoi(currString);
+		}
+		if (lineCount == 2)
+		{
+			//this will tell us how big the student wave is
+			lineCount += 1;
+			currStudentCount = stoi(currString);
+		}
+		if (lineCount ==3)
+		{
+			helpClock = stoi(currString);
+			//this will tell us how long the student will need help for and add them to the list
+			Student *myStudent = new Student(currClock, helpClock);
+
+			//maybe we use totalStudentCount
+			totalStudentCount += 1;
+			//how to push student to the queue
+			if (currStudentCount == 1)//this was the last student in the wave and its over and we will start a new wave
+			{
+				lineCount = 1;
+			}
+			currStudentCount -= 1;
+		}
+	}
+}	
+	
 Simulation::SimulationRun(int numWindows, int totalStudentCount)
 {
 	int clock = 0;
