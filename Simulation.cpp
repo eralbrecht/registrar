@@ -10,6 +10,7 @@
 Simulation::Simulation()
 {
     studentQueue = new Queue<Student>();
+    finishedQueue = new Queue<Student>();
 }
 
 void Simulation::OpenFile(string inputFile)
@@ -60,7 +61,7 @@ void Simulation::OpenFile(string inputFile)
 			//this will tell us how long the student will need help for and add them to the queue
 			//Student *myStudent = new Student(currClock, helpClock);
       currStudent = new Student(currClock, helpClock);
-      studentQueue.insert(currStudent);
+      studentQueue->insert(currStudent);
 
 
 			totalStudentCount += 1;
@@ -79,34 +80,34 @@ void Simulation::SimulationRun()
 	int clock = 0;
 	int finishedStudents = 0;
   Window myWindows[windowCount]; //Array to store each window individually, each window has member variables associated for how long it has been occupied, unoccupied, if it is currently occupied, and how much longer it will be occupied for
-  finishedQueue = new Queue<Student>();
+
 
 	while (finishedStudents < totalStudentCount) //while there are still students waiting
 	{
     //for all the windows we will check if they are empty
     //if they are, we will fill them and assign the timeRemaining variable based on the student, if they aren't, we will check if the student is done
 
-		for (int i = 0; i < numWindows; i++)
+		for (int i = 0; i < windowCount; i++)
 		{
 
 			if(myWindows[i].GetRemaining() == 0) //if the time remaining for a student is 0 ticks
 			{
 				finishedStudents +=1; //they are finished at the window, so we increase the number of finished students
 
-        Student nextInLine = studentqueue.peek();
+        Student nextInLine = studentQueue->peek();
 				if (nextInLine.getArrival() >= clock)//if the student has arrived
 				{
-					Student *currStudent = studentqueue.pop();
+					Student *currStudent = new Student(studentQueue->remove());
 					myWindows[i].SetRemaining(currStudent->getHelp());//set how much time the window will be occupied
 					currStudent->setTimeWaited(currStudent->getArrival() - clock);//set how long the student had to wait for help
 
-          finishedQueue.insert(currStudent); //moving student from line to finished
+          finishedQueue->insert(currStudent); //moving student from line to finished
 				}
       }
 			myWindows[i].DecrimentRemaining(); //decrease the time left for every student being helped
 
 
-			if(myWindows[i] == 0)
+			if(myWindows[i].GetRemaining() == 0)
 			{
 				myWindows[i].WindowTick(true);
 			}

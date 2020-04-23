@@ -29,7 +29,8 @@ class Simulation
 	   int helpClock;
 	   int windowCount;
      int totalStudentCount;
-     Queue* studentQueue;
+     Queue<Student>* studentQueue;
+     Queue<Student>* finishedQueue;
 
 };
 
