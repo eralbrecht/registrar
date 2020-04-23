@@ -2,7 +2,7 @@
 //Rose Albrecht ealbrecht@chapman.edu #2300456 (section 1)
 //Jordan Farmer jfarmer@chapman.edu #2289033 (section 2)
 #include <iostream>
-#include "student.h"
+#include "Student.h"
 
 using namespace std;
 
@@ -11,6 +11,7 @@ Student::Student(int arrivalTime, int helpTime)
 {
 	arrival = arrivalTime;
 	help = helpTime;
+	timeWaited = 0;
 }
 
 int Student::getHelp()
@@ -22,11 +23,13 @@ int Student::getArrival()
 {
 	return arrival;
 }
-void setTimeWaited(int deltaTime)
+
+void Student::setTimeWaited(int deltaTime)
 {
 	timeWaited = deltaTime;
 }
-int getTimeWaited()
+
+int Student::getTimeWaited()
 {
 	return timeWaited;
 }

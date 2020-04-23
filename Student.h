@@ -15,7 +15,7 @@ class Student
 		~Student(); //Destructor
 		int getArrival();
 		int getHelp();
-		int setTimeWaited();
+		void setTimeWaited(int deltaTime);
 		int getTimeWaited();
 	private:
 		int arrival;

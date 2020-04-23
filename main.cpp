@@ -6,6 +6,7 @@
 #include "Queue.h"
 #include "Student.h"
 #include "Window.h"
+#include "Simulation.h"
 
 
 using namespace std;
@@ -14,26 +15,29 @@ int main(int argc, char** argv)
 {
 
 	string simulationFile;
-	int totalStudentCount = 0;
+
+
+	//Instance of Simulation class
+	Simulation thisSim;
 	//Student newStudent; i think we make instances of this later and dont need it up here
 	//loads in file
 
 	//This whole chunk is to make sure the user provided a file, and checks if the file exists
 
-	ifstream inFile;
+	//ifstream inFile;
 	if (argc > 1)
 	{
 		string inputFile = argv[1];
 		cout << "File name is: " << inputFile << endl;
-		simulationFile = inputFile;
 
-		inFile.open(simulationFile);
+		//simulationFile = inputFile;
 
-		if(!inFile)
-		{
-			cout << "This file does not exist in the directory. Pleas try again." << endl;
-			exit(1);
-		}
+		thisSim.OpenFile(inputFile);
+
+		//inFile.open(simulationFile);
+
+
+
 	}
 	else
 	{
@@ -43,7 +47,7 @@ int main(int argc, char** argv)
 
 	//If we reach this point, the file exists and the simulation can be started
 
-	
+
 
 	//call simulation function
 	//call math function

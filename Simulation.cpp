@@ -2,20 +2,33 @@
 //Rose Albrecht ealbrecht@chapman.edu #2300456 (section 1)
 //Jordan Farmer jfarmer@chapman.edu #2289033 (section 2)
 #include <iostream>
+#include <fstream>
 #include "Simulation.h"
+#include "Queue.h"
+#include "DoublyLinkedList.h"
 
 //need constructor
 
-Simulation::Simulation(ifStream inFile)
+void Simulation::OpenFile(string inputFile)
 {
 	lineCount = 0;
 	string currString;
+
+  //Instance of file stream
+  ifstream inFile;
 	//we will iterate through the file, in waves of information, to create windows, and students
 	//initialize nexted variables
-	currClock = 0;
-	currStudentCount =0;
-	helpClock = 0;
-	windowCount = 0;
+	int currClock = 0;
+	int currStudentCount =0;
+	int helpClock = 0;
+	int windowCount = 0;
+  int totalStudentCount = 0;
+
+  if(!inFile)
+  {
+    cout << "This file does not exist in the directory. Pleas try again." << endl;
+    exit(1);
+  }
 	while (getline(inFile, currString))
 	{
 		//getline(inFile, currString);
@@ -53,37 +66,35 @@ Simulation::Simulation(ifStream inFile)
 			currStudentCount -= 1;
 		}
 	}
-}	
-	
+}
+
 Simulation::SimulationRun(int numWindows, int totalStudentCount)
 {
 	int clock = 0;
 	int finishedStudents = 0;
   Window myWindows[numWindows]; //Array to store each window individually, each window has member variables associated for how long it has been occupied, unoccupied, if it is currently occupied, and how much longer it will be occupied for
-  
+
   //would it be easier to just initialize all of the windows here?
-  
+
   //this is pasted from main, we can use it to initialize the windows
   			windowArray[windowCount];
 			while (windowCount !=0)
 			{
 				Window *myWindow = new Window();
 				windowCount -=1;
-<<<<<<< HEAD
+
 				//push to a list of windows but idk how
-				//make an array of windows and the size of the array is the number of windows
-=======
+
 				windowArray[windowCount-1] = *myWindow;
 				//push to an array of windows the size that is the number of windows we have
->>>>>>> caebf6feab64f578068ead66eb3d6b9a50a3b30c
 			}
-  
+
 	//int windowtimer[numWindows]={0}; //initialize our window array as all being unused, eventually their value will be the time left for the current occupant
 	while (finishedStudents < totalStudentCount) //while there are still students waiting
 	{
     //for all the windows we will check if they are empty
     //if they are, we will fill them and assign the timeRemaining variable based on the student, if they aren't, we will check if the student is done
-	
+
 		for (int i = 0; i < numWindows /*i<windowOccupancy.length*/; i++)
 		{
 
