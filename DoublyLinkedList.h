@@ -116,6 +116,17 @@ class DoublyLinkedList
 
     }
 
+    T returnFront()
+    {
+      //Check is list is empty
+      ListNode<T> *temp = front;
+
+      T tempData = temp->data;
+
+      delete temp;
+      return tempData;
+    }
+
     T removeBack()
     {
 

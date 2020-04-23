@@ -47,6 +47,11 @@ class Queue
       return myQueue.isEmpty();
     }
 
+    T peek()
+    {
+      myQueue.returnFront();
+    }
+
 };
 
 #endif

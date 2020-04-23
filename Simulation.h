@@ -18,7 +18,7 @@ class Simulation
 
     void OpenFile(string inputFile);
     void Analysis();
-    void SimulationRun(int windows, int studentCount);
+    void SimulationRun();
   private:
 	   int lineCount;
 	   string currString;

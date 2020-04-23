@@ -23,6 +23,7 @@ void Simulation::OpenFile(string inputFile)
 	int helpClock = 0;
 	int windowCount = 0;
   int totalStudentCount = 0;
+  studentQueue = new Queue<Student>();
 
   if(!inFile)
   {
@@ -53,10 +54,12 @@ void Simulation::OpenFile(string inputFile)
 		if (lineCount ==3)
 		{
 			helpClock = stoi(currString);
-			//this will tell us how long the student will need help for and add them to the list
-			Student *myStudent = new Student(currClock, helpClock);
+			//this will tell us how long the student will need help for and add them to the queue
+			//Student *myStudent = new Student(currClock, helpClock);
+      currStudent = new Student(currClock, helpClock);
+      studentQueue.insert(currStudent);
 
-			//maybe we use totalStudentCount
+
 			totalStudentCount += 1;
 			//how to push student to the queue
 			if (currStudentCount == 1)//this was the last student in the wave and its over and we will start a new wave
@@ -68,68 +71,52 @@ void Simulation::OpenFile(string inputFile)
 	}
 }
 
-void Simulation::SimulationRun(int numWindows, int totalStudentCount)
+void Simulation::SimulationRun()
 {
 	int clock = 0;
 	int finishedStudents = 0;
-  Window myWindows[numWindows]; //Array to store each window individually, each window has member variables associated for how long it has been occupied, unoccupied, if it is currently occupied, and how much longer it will be occupied for
+  Window myWindows[windowCount]; //Array to store each window individually, each window has member variables associated for how long it has been occupied, unoccupied, if it is currently occupied, and how much longer it will be occupied for
+  finishedQueue = new Queue<Student>();
 
-  //would it be easier to just initialize all of the windows here?
-
-  //this is pasted from main, we can use it to initialize the windows
-  			windowArray[windowCount];
-			while (windowCount !=0)
-			{
-				Window *myWindow = new Window();
-				windowCount -=1;
-
-				//push to a list of windows but idk how
-
-				windowArray[windowCount-1] = *myWindow;
-				//push to an array of windows the size that is the number of windows we have
-			}
-
-	//int windowtimer[numWindows]={0}; //initialize our window array as all being unused, eventually their value will be the time left for the current occupant
 	while (finishedStudents < totalStudentCount) //while there are still students waiting
 	{
     //for all the windows we will check if they are empty
     //if they are, we will fill them and assign the timeRemaining variable based on the student, if they aren't, we will check if the student is done
 
-		for (int i = 0; i < numWindows /*i<windowOccupancy.length*/; i++)
+		for (int i = 0; i < numWindows; i++)
 		{
 
-			if(myWindows[i].GetRemaining() == 0)
+			if(myWindows[i].GetRemaining() == 0) //if the time remaining for a student is 0 ticks
 			{
-				finishedStudents +=1; //if the time remaining for a student is 0 ticks, they are finished at the window, so we increase the number of finished students
-			}
+				finishedStudents +=1; //they are finished at the window, so we increase the number of finished students
+
+        Student nextInLine = studentqueue.peek();
+				if (nextInLine.getArrival >= clock)//if the student has arrived
+				{
+					Student *currStudent = studentqueue.pop();
+					myWindows[i].SetRemaining(currStudent->getHelp());//set how much time the window will be occupied
+					currStudent->setTimeWaited(currStudent->getArrival() - clock);//set how long the student had to wait for help
+
+          finishedQueue.insert(currStudent); //moving student from line to finished
+				}
+      }
 			myWindows[i].DecrimentRemaining(); //decrease the time left for every student being helped
 
-			//it its empty we will add the amount of time that the student needs help for
-			if(myWindows[i].GetRemaining() < 1)
-				//
-				//dont want it to be 0 because we might be going negative
-			{
-				Student currentStudent = studentqueue.peek();
-				if (currentStudent.getArrival >= clockCounter)//this is to see if its time to pull the next student yet
-				{
-					Student currentStudent = studentqueue.pop();
-					myWindows[i].SetRemaining(currentStudent.getHelp());//set how much time the window will be occupied
-					currentStudent.setTimeWaited(currentStudent.getArrival() - clockCounter);//set how long the student had to wait for help
-				}
-			}
+
 			if(myWindows[i] == 0)
 			{
 				myWindows[i].WindowTick(true);
 			}
 			else
 			{
-				myWindow[i].WindowTick(false);
+				myWindows[i].WindowTick(false);
 			}
 
 		}
 		clockCounter +=1; //Each run through the while loop is a clock tick
 	}
 }
+/*
 void Simulation::Analysis()
 {
 	int maxtime;
@@ -165,7 +152,7 @@ void Simulation::Analysis()
 	cout<<"mean window idle time: "<<windowidlemean<<endl;
 	cout<<"longest window idle time: "<<maxidletime<<endl;
 	cout<<"number of windows idle for over 5 minutes: " <<idleover5<<endl;
-}
+} */
 
 
 
