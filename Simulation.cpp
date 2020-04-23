@@ -68,7 +68,7 @@ void Simulation::OpenFile(string inputFile)
 	}
 }
 
-Simulation::SimulationRun(int numWindows, int totalStudentCount)
+void Simulation::SimulationRun(int numWindows, int totalStudentCount)
 {
 	int clock = 0;
 	int finishedStudents = 0;
@@ -130,7 +130,7 @@ Simulation::SimulationRun(int numWindows, int totalStudentCount)
 		clockCounter +=1; //Each run through the while loop is a clock tick
 	}
 }
-Simulation::Analysis()
+void Simulation::Analysis()
 {
 	int maxtime;
 	int studentswaitedover10;
