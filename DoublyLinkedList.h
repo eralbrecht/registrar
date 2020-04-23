@@ -77,6 +77,7 @@ class DoublyLinkedList
 
     }
 
+    
     void insertBack(T data)
     {
 

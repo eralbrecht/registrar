@@ -47,7 +47,9 @@ int main(int argc, char** argv)
 
 	//If we reach this point, the file exists and the simulation can be started
 
+	thisSim.SimulationRun();
 
+	//thisSim.Analysis();
 
 	//call simulation function
 	//call math function

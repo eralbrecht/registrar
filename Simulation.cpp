@@ -13,6 +13,10 @@ Simulation::Simulation()
     finishedQueue = new Queue<Student>();
 }
 
+Simulation::~Simulation()
+{
+  //
+}
 void Simulation::OpenFile(string inputFile)
 {
 	lineCount = 0;

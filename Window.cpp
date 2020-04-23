@@ -9,6 +9,11 @@ Window::Window()
 	timeRemaining = 0;
 	occupied = false;
 }
+
+Window::~Window()
+{
+	//
+}
 void Window::WindowTick(bool isOccupied)
 {
 	if (isOccupied)

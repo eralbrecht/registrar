@@ -6,12 +6,23 @@
 
 using namespace std;
 
+Student::Student()
+{
+		arrival = 0;
+		help = 0;
+}
+
 //constructor
 Student::Student(int arrivalTime, int helpTime)
 {
 	arrival = arrivalTime;
 	help = helpTime;
 	timeWaited = 0;
+}
+
+Student::~Student()
+{
+	//
 }
 
 int Student::getHelp()

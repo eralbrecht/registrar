@@ -11,6 +11,7 @@ using namespace std;
 class Student
 {
 	public:
+		Student();
 		Student(int arrivalTime, int helpTime); //Constructor
 		~Student(); //Destructor
 		int getArrival();
