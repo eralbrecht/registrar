@@ -61,7 +61,7 @@ void Simulation::OpenFile(string inputFile)
 			//this will tell us how long the student will need help for and add them to the queue
 			//Student *myStudent = new Student(currClock, helpClock);
       Student *currStudent = new Student(currClock, helpClock);
-      studentQueue->insert(currStudent);
+      studentQueue->insert(*currStudent);
 
 
 			totalStudentCount += 1;
@@ -101,7 +101,7 @@ void Simulation::SimulationRun()
 					myWindows[i].SetRemaining(currStudent->getHelp());//set how much time the window will be occupied
 					currStudent->setTimeWaited(currStudent->getArrival() - clock);//set how long the student had to wait for help
 
-          finishedQueue->insert(currStudent); //moving student from line to finished
+          finishedQueue->insert(*currStudent); //moving student from line to finished
 				}
       }
 			myWindows[i].DecrimentRemaining(); //decrease the time left for every student being helped

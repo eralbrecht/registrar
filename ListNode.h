@@ -19,6 +19,10 @@ class ListNode
     ListNode *next; //pointer to next node
 
 
+    ListNode()
+    {
+
+    }
     //Implementations
 
 

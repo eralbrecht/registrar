@@ -99,7 +99,7 @@ class DoublyLinkedList
 
       //Check if list is empty before removing
 
-      if(front->next = NULL)  //Only one node in the list
+      if(front->next == NULL)  //Only one node in the list
       {
         back = NULL;
       }else //More than one element int he list
@@ -134,7 +134,7 @@ class DoublyLinkedList
 
       //Check if list is empty before removing
 
-      if(back->prev = NULL) //There is only one element in the list
+      if(back->prev == NULL) //There is only one element in the list
       {
         front = NULL;
       }else //More than one element in the list
@@ -200,7 +200,7 @@ class DoublyLinkedList
         curr = curr->next;
       }
 
-      if(curr = NULL)
+      if(curr == NULL)
       {
         cout << "This position does not exist in the list." << endl;
         return -1;
