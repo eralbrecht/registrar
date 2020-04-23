@@ -8,49 +8,63 @@ Simulation::SimulationRun(int numWindows, int totalStudentCount)
 	int clock = 0;
 	int finishedStudents = 0;
   Window myWindows[numWindows]; //Array to store each window individually, each window has member variables associated for how long it has been occupied, unoccupied, if it is currently occupied, and how much longer it will be occupied for
-	//int windowOccupancy[window]={0}; //initialize our window array as all being unused, eventually their value will be the time left for the current occupent
+  
+  //would it be easier to just initialize all of the windows here?
+  
+  //this is pasted from main, we can use it to initialize the windows
+  			windowArray[windowCount];
+			while (windowCount !=0)
+			{
+				Window *myWindow = new Window();
+				windowCount -=1;
+<<<<<<< HEAD
+				//push to a list of windows but idk how
+				//make an array of windows and the size of the array is the number of windows
+=======
+				windowArray[windowCount-1] = *myWindow;
+				//push to an array of windows the size that is the number of windows we have
+>>>>>>> caebf6feab64f578068ead66eb3d6b9a50a3b30c
+			}
+  
+	//int windowtimer[numWindows]={0}; //initialize our window array as all being unused, eventually their value will be the time left for the current occupant
 	while (finishedStudents < totalStudentCount) //while there are still students waiting
 	{
-
-    clockCounter +=1; //Each run through the while loop is a clock tick
-
     //for all the windows we will check if they are empty
     //if they are, we will fill them and assign the timeRemaining variable based on the student, if they aren't, we will check if the student is done
-
+	
 		for (int i = 0; i < numWindows /*i<windowOccupancy.length*/; i++)
 		{
 
-			if(myWindows[i].GetRemaining == 0)
+			if(myWindows[i].GetRemaining() == 0)
 			{
 				finishedStudents +=1; //if the time remaining for a student is 0 ticks, they are finished at the window, so we increase the number of finished students
 			}
-
-			//decriment the time left for each student
-			//windowOccupancy[i] = (windowOccupance[i] -1); //maybe this can be done with a -=1? im not sure // i dont think we need this anymore because of how i changed the array
-
-
+			myWindows[i].DecrimentRemaining(); //decrease the time left for every student being helped
 
 			//it its empty we will add the amount of time that the student needs help for
-			if(windowOccupancy[i] < 1)//dont want it to be 0 because we might be going negative
+			if(myWindows[i].GetRemaining() < 1)
+				//
+				//dont want it to be 0 because we might be going negative
 			{
 				Student currentStudent = studentqueue.peek();
-				if (currentStudent.getArrival >= clockCounter)
+				if (currentStudent.getArrival >= clockCounter)//this is to see if its time to pull the next student yet
 				{
 					Student currentStudent = studentqueue.pop();
-					windowOccupancy[i] = currentStudent.getHelp();
-					currentStudent.setTimeWaited(currentStudent.getArrival() - clockCounter);
+					myWindows[i].SetRemaining(currentStudent.getHelp());//set how much time the window will be occupied
+					currentStudent.setTimeWaited(currentStudent.getArrival() - clockCounter);//set how long the student had to wait for help
 				}
 			}
-			if(windowOccupancy[i] > 0)
+			if(myWindows[i] == 0)
 			{
-				//need to figure out how to use a "window" method to add time occupied for the window object in the same index location as the occupied window
+				myWindows[i].WindowTick(true);
 			}
 			else
 			{
-				//same as above but want to increment the unoccupied count
+				myWindow[i].WindowTick(false);
 			}
 
 		}
+		clockCounter +=1; //Each run through the while loop is a clock tick
 	}
 }
 

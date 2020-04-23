@@ -21,10 +21,10 @@ void Window::WindowTick(bool isOccupied)
 		timeUnoccupied +=1;
 	}
 }
-void Window::isOccupied()
+/*void Window::isOccupied()
 {
 	return isOccupied;
-}
+}*/
 int Window::GetOccupied()
 {
 	return timeOccupied;
@@ -33,7 +33,17 @@ int Window::GetUnoccupied()
 {
 	return timeUnoccupied;
 }
-
+int Window::SetRemaining(int time)
+{
+	timeRemaining = time;
+}
+int Window::DecrimentRemaining()
+{
+	if (timeRemaining > -1)
+	{
+		timeRemaining = timeRemaining -1;
+	}
+}
 int Window::GetRemaining()
 {
 	return timeRemaining;

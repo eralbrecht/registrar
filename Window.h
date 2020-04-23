@@ -18,6 +18,7 @@ class Window
 	int GetOccupied();
 	int GetUnoccupied();
 	int GetRemaining();
+	int SetRemaining();
 	private:
 	int timeOccupied;
 	int timeUnoccupied;
