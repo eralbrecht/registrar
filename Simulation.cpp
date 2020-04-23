@@ -7,24 +7,29 @@ Simulation::SimulationRun(int numWindows, int totalStudentCount)
 {
 	int clock = 0;
 	int finishedStudents = 0;
-  Window myWindows[numWindows]; //Array to store each window individually, each window has member variables associated w/it
+  Window myWindows[numWindows]; //Array to store each window individually, each window has member variables associated for how long it has been occupied, unoccupied, if it is currently occupied, and how much longer it will be occupied for
 	//int windowOccupancy[window]={0}; //initialize our window array as all being unused, eventually their value will be the time left for the current occupent
 	while (finishedStudents < totalStudentCount) //while there are still students waiting
 	{
+
+    clockCounter +=1; //Each run through the while loop is a clock tick
+
+    //for all the windows we will check if they are empty
+    //if they are, we will fill them and assign the timeRemaining variable based on the student, if they aren't, we will check if the student is done
+
 		for (int i = 0; i < numWindows /*i<windowOccupancy.length*/; i++)
 		{
 
-			if(myWindows[i] == 1)
+			if(myWindows[i].GetRemaining == 0)
 			{
-				finishedStudents +=1; //we are about to decriment the time left that every student has so this is about to go to zero signifying theyre finishing
+				finishedStudents +=1; //if the time remaining for a student is 0 ticks, they are finished at the window, so we increase the number of finished students
 			}
+
 			//decriment the time left for each student
-			windowOccupancy[i] = (windowOccupance[i] -1); //maybe this can be done with a -=1? im not sure
+			//windowOccupancy[i] = (windowOccupance[i] -1); //maybe this can be done with a -=1? im not sure // i dont think we need this anymore because of how i changed the array
 
 
-			//now we up the clock value
-			clockCounter +=1;
-			//for all the windows we will check if they are empty
+
 			//it its empty we will add the amount of time that the student needs help for
 			if(windowOccupancy[i] < 1)//dont want it to be 0 because we might be going negative
 			{
