@@ -28,6 +28,8 @@ class Simulation
 	   int currStudentCount;
 	   int helpClock;
 	   int windowCount;
+     int totalStudentCount;
+     Queue* studentQueue;
 
 };
 

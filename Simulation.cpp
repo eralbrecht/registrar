@@ -1,13 +1,16 @@
 //Registrar Simulation
 //Rose Albrecht ealbrecht@chapman.edu #2300456 (section 1)
 //Jordan Farmer jfarmer@chapman.edu #2289033 (section 2)
-#include <iostream>
 #include <fstream>
 #include "Simulation.h"
 #include "Queue.h"
 #include "DoublyLinkedList.h"
 
 //need constructor
+Simulation::Simulation()
+{
+    studentQueue = new Queue<Student>();
+}
 
 void Simulation::OpenFile(string inputFile)
 {
@@ -18,12 +21,12 @@ void Simulation::OpenFile(string inputFile)
   ifstream inFile;
 	//we will iterate through the file, in waves of information, to create windows, and students
 	//initialize nexted variables
-	int currClock = 0;
-	int currStudentCount =0;
-	int helpClock = 0;
-	int windowCount = 0;
-  int totalStudentCount = 0;
-  studentQueue = new Queue<Student>();
+	currClock = 0;
+	currStudentCount =0;
+	helpClock = 0;
+	windowCount = 0;
+  totalStudentCount = 0;
+
 
   if(!inFile)
   {
@@ -91,7 +94,7 @@ void Simulation::SimulationRun()
 				finishedStudents +=1; //they are finished at the window, so we increase the number of finished students
 
         Student nextInLine = studentqueue.peek();
-				if (nextInLine.getArrival >= clock)//if the student has arrived
+				if (nextInLine.getArrival() >= clock)//if the student has arrived
 				{
 					Student *currStudent = studentqueue.pop();
 					myWindows[i].SetRemaining(currStudent->getHelp());//set how much time the window will be occupied
@@ -113,7 +116,7 @@ void Simulation::SimulationRun()
 			}
 
 		}
-		clockCounter +=1; //Each run through the while loop is a clock tick
+		clock +=1; //Each run through the while loop is a clock tick
 	}
 }
 /*
