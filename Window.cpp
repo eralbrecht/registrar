@@ -7,6 +7,7 @@ Window::Window()
 	timeOccupied  = 0;
 	timeUnoccupied = 0;
 	timeRemaining = 0;
+	isOccupied = false;
 }
 void Window::WindowTick(bool isOccupied)
 {
@@ -19,6 +20,10 @@ void Window::WindowTick(bool isOccupied)
 	{
 		timeUnoccupied +=1;
 	}
+}
+void Window::isOccupied()
+{
+	return isOccupied;
 }
 int Window::GetOccupied()
 {
