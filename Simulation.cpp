@@ -74,6 +74,16 @@ void Simulation::OpenFile(string inputFile)
 			//Student *myStudent = new Student(currClock, helpClock);
       Student *currStudent = new Student(currClock, helpClock);
       studentQueue->insert(*currStudent);
+      if (studentQueue -> getSize() != 0)
+      {
+           cout << studentQueue -> getSize() << endl;
+      }
+      else
+      {
+           cout <<"stout" << endl;
+      }
+      cout << "DKFJSLFKD";
+      //studentQueue->peek();
 
 
 			totalStudentCount += 1;
@@ -107,13 +117,19 @@ void Simulation::SimulationRun()
 		for (int i = 0; i < windowCount; i++)
 		{
 			cout<<"line109"<<endl;
+               cout << "Mal" << endl;
 			if(myWindows[i].GetRemaining() == 0) //if the time remaining for a student is 0 ticks
 			{
-				cout<<"line112"<<endl;
+				cout << "line112B" << endl;
+                    cout << "SOphia" << endl;
 				finishedStudents +=1; //they are finished at the window, so we increase the number of finished students
 
-				Student nextInLine = studentQueue->peek();
-				if (nextInLine.getArrival() >= clock)//if the student has arrived
+                    cout << "Chase" << endl;
+				//Student nextInLine = studentQueue->peek();
+                    //studentQueue->peek();
+                    cout << "BLAKKEEEE" << endl;
+                    //cout << studentQueue->peek().getArrival() << endl;
+				if (studentQueue->peek().getArrival() >= clock)//if the student has arrived
 				{
 					cout<<"line117"<<endl;
           if(studentQueue->isEmpty() == false){
@@ -129,6 +145,7 @@ void Simulation::SimulationRun()
 
 
 				}
+                    cout <<  "ENDDD" << endl;
 			}
 			cout<<"line129"<<endl;
 			myWindows[i].DecrimentRemaining();

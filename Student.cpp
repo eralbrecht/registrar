@@ -44,3 +44,8 @@ int Student::getTimeWaited()
 {
 	return timeWaited;
 }
+
+void Student::print()
+{
+	cout << arrival;
+}

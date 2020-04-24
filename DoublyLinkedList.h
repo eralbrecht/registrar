@@ -30,12 +30,12 @@ class DoublyLinkedList
 
     ~DoublyLinkedList()//Destructor
     {
-    
+
     }
 
     //Helper Functons
 
-    unsigned int getSize()
+     int getSize()
     {
 
       return size;
@@ -85,12 +85,24 @@ class DoublyLinkedList
 
       //CHeck if list is empty before inserting, then move on to the conditions
 
-      ListNode<T> *temp = back;
-      back = node;
-      node->prev = temp;
-      temp->next = node;
-      node->next = NULL;
-      size++;
+      if (size == 0)
+      {
+           back = node;
+           front = node;
+           node->prev = nullptr;
+           node->next = nullptr;
+           ++size;
+      }
+     else
+     {
+          ListNode<T> *temp = back;
+          back = node;
+          node->prev = temp;
+          temp->next = node;
+          node->next = NULL;
+          size++;
+     }
+
     }
 
     T removeFront()
@@ -98,12 +110,19 @@ class DoublyLinkedList
 
       ListNode<T> *tempNode = front;
 
+      if (front == nullptr)
+      {
+           cout << "poop" << endl;
+      }
+
       //Check if list is empty before removing
+      //if ()
 
       if(front->next == NULL)  //Only one node in the list
       {
         back = NULL;
-      }else //More than one element int he list
+      }
+      else //More than one element int he list
       {
         front->next->prev = NULL;
       }
@@ -112,7 +131,7 @@ class DoublyLinkedList
       tempNode->next = NULL;
       T temp = tempNode->data;
       size--;
-      delete tempNode;
+      //delete tempNode;
       return temp;
 
     }
@@ -120,12 +139,12 @@ class DoublyLinkedList
     T returnFront()
     {
       //Check is list is empty
-      ListNode<T> *temp = front;
+      //ListNode<T> *temp = front;
 
-      T tempData = temp->data;
+       return front->data;
 
-      delete temp;
-      return tempData;
+      //delete temp;
+      //return front;
     }
 
     T removeBack()

@@ -18,6 +18,7 @@ class Student
 		int getHelp();
 		void setTimeWaited(int deltaTime);
 		int getTimeWaited();
+		void print();
 	private:
 		int arrival;
 		int help;

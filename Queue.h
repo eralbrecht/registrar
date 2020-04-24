@@ -36,7 +36,7 @@ class Queue
 
     T remove() //Queue must remove from the front
     {
-      myQueue.removeFront();
+      return myQueue.removeFront();
     }
 
     int getSize(){
@@ -49,7 +49,12 @@ class Queue
 
     T peek()
     {
-      myQueue.returnFront();
+         return myQueue.returnFront();
+    }
+
+    void printList()
+    {
+         myQueue.printList();
     }
 
 };
