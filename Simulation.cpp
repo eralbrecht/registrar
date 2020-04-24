@@ -126,16 +126,33 @@ void Simulation::SimulationRun()
 
   int maxTime = 0;
   double meanTime = 0;
+  int totalStudentWaitTime = 0; //for calculating mean wait time
   int studentsOverTen = 0;
   int medianTime = 0;
   int windowsOverFive = 0;
   double meanWindow = 0;
   int maxWindow = 0;
   int totalWindowIdleTime = 0; //for calculating mean idle time
+  Student finishedStudentsArray[totalStudentCount];
 
   for(int i = 0; i < totalStudentCount; i++)
   {
+    finishedStudentsArray[i] = finishedQueue->remove();
+  }
 
+  for(int i = 0; i < totalStudentCount; i++)
+  {
+    totalStudentWaitTime += finishedStudentsArray[i].getTimeWaited();
+
+    if(finishedStudentsArray[i].getTimeWaited() > maxTime)
+    {
+      maxTime = finishedStudentsArray[i].getTimeWaited();
+    }
+
+    if(finishedStudentsArray[i].getTimeWaited() > 5)
+    {
+      studentsOverTen++;
+    }
   }
 
   for(int i = 0; i < windowCount; i++)
@@ -153,29 +170,20 @@ void Simulation::SimulationRun()
 
 
   }
-/*
-  for student in student list
-    wait time sum += student.getTimeWaited()
-    if (student.getTimeWaited >= 10)
-    {
-      studentswaitedover10 +=1;
-    }
-    if (student.getTimeWaited > maxtime)
-    {
-      maxwaittime = student.getTimeWaited()
-    }
-  studentwaitmean  = waittimes/finishedStudents
-  //im not sure how to find a median, ill figure it out tho*/
+
+  meanTime  = (double)totalStudentWaitTime / (double)totalStudentCount;
+  //im not sure how to find a median, ill figure it out tho
 
 
   meanWindow  = (double)totalWindowIdleTime / (double)windowCount;
-  //cout<<"mean student wait time: "<< studentwaitmean<<endl;
+
+  cout << "Mean student wait time: "<< meanTime << endl;
   //cout<<"median student wait time: "<< uhhhhhhh << endl;
-  //cout<<"longest student wait time: " << maxwaittime<<endl;
-  //cout<<"number of students that waited over ten minutes: " << studentswaitedover10<<endl;
-  //cout<<"mean window idle time: "<<windowidlemean<<endl;
-  cout<<"Longest window idle time: "<< maxWindow <<endl;
-  cout<<"Number of windows idle for over 5 minutes: " << windowsOverFive <<endl;
+  cout << "Longest student wait time: " << maxTime << endl;
+  cout << "Number of students that waited over ten minutes: " << studentsOverTen << endl;
+  cout << "Mean window idle time: "<< meanWindow << endl;
+  cout << "Longest window idle time: " << maxWindow << endl;
+  cout << "Number of windows idle for over 5 minutes: " << windowsOverFive << endl;
 
 }
 
