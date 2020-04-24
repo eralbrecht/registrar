@@ -132,15 +132,17 @@ void Simulation::SimulationRun()
 				if (studentQueue->peek().getArrival() >= clock)//if the student has arrived
 				{
 					cout<<"line117"<<endl;
-          if(studentQueue->isEmpty() == false){
-            Student *currStudent = new Student(studentQueue->remove());
-            cout<<"line120"<<endl;
-  					myWindows[i].SetRemaining(currStudent->getHelp());//set how much time the window will be occupied
-  					cout<<"line122"<<endl;
-  					currStudent->setTimeWaited(currStudent->getArrival() - clock);//set how long the student had to wait for help
-  					cout<<"line124"<<endl;
-  					finishedQueue->insert(*currStudent); //moving student from line to finished
-  					cout<<"line126"<<endl;
+          if(studentQueue->isEmpty() == false)
+		  {
+				Student *currStudent = new Student(studentQueue->remove());
+				cout<<"line120"<<endl;
+  				myWindows[i].SetRemaining(currStudent->getHelp());//set how much time the window will be occupied
+  				cout<<"line122"<<endl;
+  				currStudent->setTimeWaited(currStudent->getArrival() - clock); 
+				//set how long thestudent had to wait for help
+  				cout<<"line124"<<endl;
+  				finishedQueue->insert(*currStudent); //moving student from line to finished
+  				cout<<"line126"<<endl;
           }
 
 
@@ -148,8 +150,9 @@ void Simulation::SimulationRun()
                     cout <<  "ENDDD" << endl;
 			}
 			cout<<"line129"<<endl;
-			myWindows[i].DecrimentRemaining();
 			cout<<"remaining time at the window"<<myWindows[i].GetRemaining();
+			myWindows[i].DecrimentRemaining();
+			
 			//decrease the time left for every student being helped
 			cout<<"remaining time at the window"<<myWindows[i].GetRemaining();
 			if(myWindows[i].GetRemaining() == 0)
@@ -159,11 +162,12 @@ void Simulation::SimulationRun()
 			}
 			else
 			{
+				cout<<"line148"<<endl;
 				myWindows[i].WindowTick(false);
 			}
 
 		}
-		cout<<"line142"<<endl;
+		cout<<"line153"<<endl;
 		clock +=1; //Each run through the while loop is a clock tick
 	}
 	cout<<"line145"<<endl;
