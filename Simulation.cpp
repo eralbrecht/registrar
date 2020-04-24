@@ -157,7 +157,7 @@ void Simulation::SimulationRun()
   }
   int maxtemp = 0;
   int placetemp = 0;
-  int tempArray[totalStudentCount] = finishedStudentArray;
+  int tempArray[totalStudentCount];
   	for (int i = 0; i<totalStudentCount; i++)
 	{
 		tempArray[i] = finishedStudentsArray[i].getTimeWaited();
@@ -165,11 +165,11 @@ void Simulation::SimulationRun()
 	sort(tempArray, tempArray+totalStudentCount);
 	if (totalStudentCount % 2 ==1)
 	{
-		medianTime = tempArray[(totalStudentCount - 1)/2]
+		medianTime = tempArray[(totalStudentCount - 1)/2];
 	}
 	else
 	{
-		medianTime = (tempArray[(totalStudentCount - 1)/2] + tempArray[1+((totalStudentCount - 1)/2)])/2
+		medianTime = (tempArray[(totalStudentCount - 1)/2] + tempArray[1+((totalStudentCount - 1)/2)])/2;
 		//this is the mean of the two middle values
 	}
   for(int i = 0; i < windowCount; i++)
