@@ -150,7 +150,7 @@ void Simulation::SimulationRun()
 			}
 
 		}
-		cout<<"line142"<<endl;
+		cout<<"line153"<<endl;
 		clock +=1; //Each run through the while loop is a clock tick
 	}
 	cout<<"line145"<<endl;
