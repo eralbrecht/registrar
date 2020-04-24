@@ -2,6 +2,7 @@
 //Rose Albrecht ealbrecht@chapman.edu #2300456 (section 1)
 //Jordan Farmer jfarmer@chapman.edu #2289033 (section 2)
 #include <fstream>
+#include <algorithm> //this library will give us a sort functionality
 #include "Simulation.h"
 #include "Queue.h"
 #include "DoublyLinkedList.h"
@@ -11,6 +12,7 @@ Simulation::Simulation()
 {
     studentQueue = new Queue<Student>();
     finishedQueue = new Queue<Student>();
+	totalStudentCount = 0;
 }
 
 Simulation::~Simulation()
@@ -98,7 +100,7 @@ void Simulation::SimulationRun()
 			{
 				finishedStudents +=1; //they are finished at the window, so we increase the number of finished students
 
-        Student nextInLine = studentQueue->peek();
+				Student nextInLine = studentQueue->peek();
 				if (nextInLine.getArrival() >= clock)//if the student has arrived
 				{
 					Student *currStudent = new Student(studentQueue->remove());
@@ -139,7 +141,6 @@ void Simulation::SimulationRun()
   {
     finishedStudentsArray[i] = finishedQueue->remove();
   }
-
   for(int i = 0; i < totalStudentCount; i++)
   {
     totalStudentWaitTime += finishedStudentsArray[i].getTimeWaited();
@@ -149,12 +150,28 @@ void Simulation::SimulationRun()
       maxTime = finishedStudentsArray[i].getTimeWaited();
     }
 
-    if(finishedStudentsArray[i].getTimeWaited() > 5)
+    if(finishedStudentsArray[i].getTimeWaited() > 10)
     {
       studentsOverTen++;
     }
   }
-
+  int maxtemp = 0;
+  int placetemp = 0;
+  int tempArray[totalStudentCount] = finishedStudentArray;
+  	for (int i = 0; i<totalStudentCount; i++)
+	{
+		tempArray[i] = finishedStudentsArray[i].getTimeWaited();
+	}
+	sort(tempArray, tempArray+totalStudentCount);
+	if (totalStudentCount % 2 ==1)
+	{
+		medianTime = tempArray[(totalStudentCount - 1)/2]
+	}
+	else
+	{
+		medianTime = (tempArray[(totalStudentCount - 1)/2] + tempArray[1+((totalStudentCount - 1)/2)])/2
+		//this is the mean of the two middle values
+	}
   for(int i = 0; i < windowCount; i++)
   {
     totalWindowIdleTime += myWindows[i].GetUnoccupied(); //for each window this will increase until the total is found
