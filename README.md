@@ -7,3 +7,4 @@ References
 	https://www.cplusplus.com/articles/NhA0RXSz/ //used to look at sorting algorithms to find median
 Notes:
 	we interpret window time idle as the total time over a simulation it sat unused
+	this runs OK, it works with the sample input but struggles when there is a lot of input/it has to run a lot of windows. we think that it may be trying to hold to many objects
