@@ -6,18 +6,19 @@
 #include "Simulation.h"
 #include "Queue.h"
 #include "DoublyLinkedList.h"
-
+using namespace std;
 //need constructor
 Simulation::Simulation()
 {
     studentQueue = new Queue<Student>();
     finishedQueue = new Queue<Student>();
 	totalStudentCount = 0;
+	windowCount = 0;
 }
 
 Simulation::~Simulation()
 {
-  //
+  
 }
 void Simulation::OpenFile(string inputFile)
 {
@@ -26,6 +27,7 @@ void Simulation::OpenFile(string inputFile)
 
   //Instance of file stream
   ifstream inFile;
+  inFile.open(inputFile);
 	//we will iterate through the file, in waves of information, to create windows, and students
 	//initialize nexted variables
 	currClock = 0;
@@ -40,8 +42,11 @@ void Simulation::OpenFile(string inputFile)
     cout << "This file does not exist in the directory. Pleas try again." << endl;
     exit(1);
   }
+  cout<<"line44"<<endl;
+  //cout<<"inFile:"<<inFile<<endl;
 	while (getline(inFile, currString))
 	{
+		cout<<"line46"<<endl;
 		//getline(inFile, currString);
 		if (lineCount == 0)
 		{
@@ -63,6 +68,7 @@ void Simulation::OpenFile(string inputFile)
 		}
 		if (lineCount ==3)
 		{
+			cout<<"line66"<<endl;
 			helpClock = stoi(currString);
 			//this will tell us how long the student will need help for and add them to the queue
 			//Student *myStudent = new Student(currClock, helpClock);
@@ -77,12 +83,16 @@ void Simulation::OpenFile(string inputFile)
 				lineCount = 1;
 			}
 			currStudentCount -= 1;
+			cout<<"line86"<<endl;
 		}
+		cout<<"line88"<<endl;
 	}
+	cout<<"line90"<<endl;
 }
 
 void Simulation::SimulationRun()
 {
+	cout<<"line95"<<endl;
 	int clock = 0;
 	int finishedStudents = 0;
   Window myWindows[windowCount]; //Array to store each window individually, each window has member variables associated for how long it has been occupied, unoccupied, if it is currently occupied, and how much longer it will be occupied for
@@ -90,31 +100,40 @@ void Simulation::SimulationRun()
 
 	while (finishedStudents < totalStudentCount) //while there are still students waiting
 	{
+		cout<<"line103"<<endl;
     //for all the windows we will check if they are empty
     //if they are, we will fill them and assign the timeRemaining variable based on the student, if they aren't, we will check if the student is done
 
 		for (int i = 0; i < windowCount; i++)
 		{
-
+			cout<<"line109"<<endl;
 			if(myWindows[i].GetRemaining() == 0) //if the time remaining for a student is 0 ticks
 			{
+				cout<<"line112"<<endl;
 				finishedStudents +=1; //they are finished at the window, so we increase the number of finished students
 
 				Student nextInLine = studentQueue->peek();
 				if (nextInLine.getArrival() >= clock)//if the student has arrived
 				{
+					cout<<"line117"<<endl;
 					Student *currStudent = new Student(studentQueue->remove());
+					cout<<"line120"<<endl;
 					myWindows[i].SetRemaining(currStudent->getHelp());//set how much time the window will be occupied
+					cout<<"line122"<<endl;
 					currStudent->setTimeWaited(currStudent->getArrival() - clock);//set how long the student had to wait for help
-
-          finishedQueue->insert(*currStudent); //moving student from line to finished
+					cout<<"line124"<<endl;
+					finishedQueue->insert(*currStudent); //moving student from line to finished
+					cout<<"line126"<<endl;
 				}
-      }
-			myWindows[i].DecrimentRemaining(); //decrease the time left for every student being helped
-
-
+			}
+			cout<<"line129"<<endl;
+			myWindows[i].DecrimentRemaining();
+			cout<<"remaining time at the window"<<myWindows[i].GetRemaining();
+			//decrease the time left for every student being helped
+			cout<<"remaining time at the window"<<myWindows[i].GetRemaining();
 			if(myWindows[i].GetRemaining() == 0)
 			{
+				cout<<"line133"<<endl;
 				myWindows[i].WindowTick(true);
 			}
 			else
@@ -123,33 +142,38 @@ void Simulation::SimulationRun()
 			}
 
 		}
+		cout<<"line142"<<endl;
 		clock +=1; //Each run through the while loop is a clock tick
 	}
-
-  int maxTime = 0;
-  double meanTime = 0;
-  int totalStudentWaitTime = 0; //for calculating mean wait time
-  int studentsOverTen = 0;
-  int medianTime = 0;
-  int windowsOverFive = 0;
-  double meanWindow = 0;
-  int maxWindow = 0;
-  int totalWindowIdleTime = 0; //for calculating mean idle time
-  Student finishedStudentsArray[totalStudentCount];
-
+	cout<<"line145"<<endl;
+	int maxTime = 0;
+	double meanTime = 0;
+	int totalStudentWaitTime = 0; //for calculating mean wait time
+	int studentsOverTen = 0;
+	int medianTime = 0;
+	int windowsOverFive = 0;
+	double meanWindow = 0;
+	int maxWindow = 0;
+	int totalWindowIdleTime = 0; //for calculating mean idle time
+	Student finishedStudentsArray[totalStudentCount];
+	cout<<"line 139"<<endl;
   for(int i = 0; i < totalStudentCount; i++)
   {
     finishedStudentsArray[i] = finishedQueue->remove();
   }
+  cout<<"line144"<<endl;
+  cout<<"totalStudentCount"<<totalStudentCount<<endl;
   for(int i = 0; i < totalStudentCount; i++)
   {
+	cout<<"line147"<<endl;
     totalStudentWaitTime += finishedStudentsArray[i].getTimeWaited();
-
+	cout<<"line149"<<totalStudentWaitTime<<endl;
     if(finishedStudentsArray[i].getTimeWaited() > maxTime)
     {
       maxTime = finishedStudentsArray[i].getTimeWaited();
+	  cout<<"line151"<<endl;
     }
-
+cout<<"line154"<<endl;
     if(finishedStudentsArray[i].getTimeWaited() > 10)
     {
       studentsOverTen++;
@@ -184,15 +208,13 @@ void Simulation::SimulationRun()
     {
       windowsOverFive++;
     }
-
-
   }
 
-  meanTime  = (double)totalStudentWaitTime / (double)totalStudentCount;
+  meanTime = totalStudentWaitTime / totalStudentCount;
   //im not sure how to find a median, ill figure it out tho
 
 
-  meanWindow  = (double)totalWindowIdleTime / (double)windowCount;
+ meanWindow  = totalWindowIdleTime / windowCount;
 
   cout << "Mean student wait time: "<< meanTime << endl;
   //cout<<"median student wait time: "<< uhhhhhhh << endl;
