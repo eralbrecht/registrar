@@ -30,7 +30,7 @@ class DoublyLinkedList
 
     ~DoublyLinkedList()//Destructor
     {
-
+    
     }
 
     //Helper Functons
@@ -77,7 +77,7 @@ class DoublyLinkedList
 
     }
 
-    
+
     void insertBack(T data)
     {
 

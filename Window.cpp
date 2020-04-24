@@ -12,7 +12,7 @@ Window::Window()
 
 Window::~Window()
 {
-	//
+	
 }
 void Window::WindowTick(bool isOccupied)
 {
