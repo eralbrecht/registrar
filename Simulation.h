@@ -17,7 +17,6 @@ class Simulation
     ~Simulation(); //Destructor
 
     void OpenFile(string inputFile);
-    void Analysis();
     void SimulationRun();
   private:
 	   int lineCount;

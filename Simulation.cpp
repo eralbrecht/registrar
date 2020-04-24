@@ -123,44 +123,62 @@ void Simulation::SimulationRun()
 		}
 		clock +=1; //Each run through the while loop is a clock tick
 	}
-}
+
+  int maxTime = 0;
+  double meanTime = 0;
+  int studentsOverTen = 0;
+  int medianTime = 0;
+  int windowsOverFive = 0;
+  double meanWindow = 0;
+  int maxWindow = 0;
+  int totalWindowIdleTime = 0; //for calculating mean idle time
+
+  for(int i = 0; i < totalStudentCount; i++)
+  {
+
+  }
+
+  for(int i = 0; i < windowCount; i++)
+  {
+    totalWindowIdleTime += myWindows[i].GetUnoccupied(); //for each window this will increase until the total is found
+
+    if(myWindows[i].GetUnoccupied() > maxWindow){ //If a window has a longer idle time than another, set the max idle time
+      maxWindow = myWindows[i].GetUnoccupied();
+    }
+
+    if(myWindows[i].GetUnoccupied() > 5)
+    {
+      windowsOverFive++;
+    }
+
+
+  }
 /*
-void Simulation::Analysis()
-{
-	int maxtime;
-	int studentswaitedover10;
-	int idleover5;
-	for student in student list
-		wait time sum += student.getTimeWaited()
-		if (student.getTimeWaited >= 10)
-		{
-			studentswaitedover10 +=1;
-		}
-		if (student.getTimeWaited > maxtime)
-		{
-			maxwaittime = student.getTimeWaited()
-		}
-	studentwaitmean  = waittimesum/finishedStudents()
-	//im not sure how to find a median, ill figure it out tho
-	for windows in window list
-		idle time sum += window.GetUnoccupied()
-		if (window.GetUnoccupied >= 5)
-		{
-			idleover5 +=1;
-		}
-		if (window.GetUnoccupied > maxtime)
-		{
-			maxidletime = student.getTimeWaited()
-		}
-	windowidlemean  = waittimesum/finishedStudents()
-	cout<<"mean student wait time: "<< studentwaitmean<<endl;
-	cout<<"median student wait time: "<< uhhhhhhh << endl;
-	cout<<"longest student wait time: " << maxwaittime<<endl;
-	cout<<"number of students that waited over ten minutes: " << studentswaitedover10<<endl;
-	cout<<"mean window idle time: "<<windowidlemean<<endl;
-	cout<<"longest window idle time: "<<maxidletime<<endl;
-	cout<<"number of windows idle for over 5 minutes: " <<idleover5<<endl;
-} */
+  for student in student list
+    wait time sum += student.getTimeWaited()
+    if (student.getTimeWaited >= 10)
+    {
+      studentswaitedover10 +=1;
+    }
+    if (student.getTimeWaited > maxtime)
+    {
+      maxwaittime = student.getTimeWaited()
+    }
+  studentwaitmean  = waittimes/finishedStudents
+  //im not sure how to find a median, ill figure it out tho*/
+
+
+  meanWindow  = (double)totalWindowIdleTime / (double)windowCount;
+  //cout<<"mean student wait time: "<< studentwaitmean<<endl;
+  //cout<<"median student wait time: "<< uhhhhhhh << endl;
+  //cout<<"longest student wait time: " << maxwaittime<<endl;
+  //cout<<"number of students that waited over ten minutes: " << studentswaitedover10<<endl;
+  //cout<<"mean window idle time: "<<windowidlemean<<endl;
+  cout<<"Longest window idle time: "<< maxWindow <<endl;
+  cout<<"Number of windows idle for over 5 minutes: " << windowsOverFive <<endl;
+
+}
+
 
 
 
