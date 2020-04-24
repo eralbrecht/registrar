@@ -82,7 +82,6 @@ void Simulation::OpenFile(string inputFile)
       {
            cout <<"stout" << endl;
       }
-      cout << "DKFJSLFKD";
       //studentQueue->peek();
 
 
@@ -117,17 +116,13 @@ void Simulation::SimulationRun()
 		for (int i = 0; i < windowCount; i++)
 		{
 			cout<<"line109"<<endl;
-               cout << "Mal" << endl;
 			if(myWindows[i].GetRemaining() == 0) //if the time remaining for a student is 0 ticks
 			{
 				cout << "line112B" << endl;
-                    cout << "SOphia" << endl;
 				finishedStudents +=1; //they are finished at the window, so we increase the number of finished students
 
-                    cout << "Chase" << endl;
 				//Student nextInLine = studentQueue->peek();
                     //studentQueue->peek();
-                    cout << "BLAKKEEEE" << endl;
                     //cout << studentQueue->peek().getArrival() << endl;
 				if (studentQueue->peek().getArrival() >= clock)//if the student has arrived
 				{
@@ -138,7 +133,7 @@ void Simulation::SimulationRun()
 				cout<<"line120"<<endl;
   				myWindows[i].SetRemaining(currStudent->getHelp());//set how much time the window will be occupied
   				cout<<"line122"<<endl;
-  				currStudent->setTimeWaited(currStudent->getArrival() - clock); 
+  				currStudent->setTimeWaited(currStudent->getArrival() - clock);
 				//set how long thestudent had to wait for help
   				cout<<"line124"<<endl;
   				finishedQueue->insert(*currStudent); //moving student from line to finished
@@ -147,14 +142,13 @@ void Simulation::SimulationRun()
 
 
 				}
-                    cout <<  "ENDDD" << endl;
 			}
 			cout<<"line129"<<endl;
-			cout<<"remaining time at the window"<<myWindows[i].GetRemaining();
+			//cout<<"remaining time at the window"<<myWindows[i].GetRemaining();
 			myWindows[i].DecrimentRemaining();
-			
+
 			//decrease the time left for every student being helped
-			cout<<"remaining time at the window"<<myWindows[i].GetRemaining();
+			//cout<<"remaining time at the window"<<myWindows[i].GetRemaining();
 			if(myWindows[i].GetRemaining() == 0)
 			{
 				cout<<"line133"<<endl;
@@ -187,12 +181,12 @@ void Simulation::SimulationRun()
     finishedStudentsArray[i] = finishedQueue->remove();
   }
   cout<<"line144"<<endl;
-  cout<<"totalStudentCount"<<totalStudentCount<<endl;
+  //cout<<"totalStudentCount"<<totalStudentCount<<endl;
   for(int i = 0; i < totalStudentCount; i++)
   {
 	cout<<"line147"<<endl;
     totalStudentWaitTime += finishedStudentsArray[i].getTimeWaited();
-	cout<<"line149"<<totalStudentWaitTime<<endl;
+	//cout<<"line149"<<totalStudentWaitTime<<endl;
     if(finishedStudentsArray[i].getTimeWaited() > maxTime)
     {
       maxTime = finishedStudentsArray[i].getTimeWaited();
@@ -242,7 +236,7 @@ cout<<"line154"<<endl;
  meanWindow  = totalWindowIdleTime / windowCount;
 
   cout << "Mean student wait time: "<< meanTime << endl;
-  //cout<<"median student wait time: "<< uhhhhhhh << endl;
+  cout << "Median student wait time: "<< medianTime << endl;
   cout << "Longest student wait time: " << maxTime << endl;
   cout << "Number of students that waited over ten minutes: " << studentsOverTen << endl;
   cout << "Mean window idle time: "<< meanWindow << endl;
